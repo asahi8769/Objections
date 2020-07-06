@@ -6,7 +6,6 @@ from selenium.webdriver.chrome.options import Options as Chrome_options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import UnexpectedAlertPresentException
 import warnings, time, operator, gc, sys, os, pyautogui
 import pandas as pd
 from datetime import datetime
