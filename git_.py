@@ -10,10 +10,11 @@ class GitCommandLines():
 
     def push_rep(self):
         self.clone_rep()
+        subprocess_cmd(f'git rm -r --cached old')
         subprocess_cmd (f'git init')
         subprocess_cmd (f'git add .')
         subprocess_cmd (f'git config --global http.sslVerify false')
-        subprocess_cmd (f'git rm -r --cached old')
+
         # subprocess_cmd (f'git rm -r --cached .idea/')
         # subprocess_cmd (f'git rm -r --cached __pycache__/')
 
