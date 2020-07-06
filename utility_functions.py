@@ -10,11 +10,13 @@ def make_dir(dirname):
     except FileExistsError:
         pass
 
+
 def path_find(name, *paths):
     for path in paths:
         for root, dirs, files in os.walk(path):
             if name in files:
                 return os.path.join(root, name)
+
 
 def subprocess_cmd(command):
     print(command)
@@ -25,6 +27,7 @@ def subprocess_cmd(command):
         process = Popen(command, stdout=PIPE, shell=True, universal_newlines=False)
         proc_stdout = process.communicate()[0].strip()
     print(proc_stdout)
+
 
 def old_ver_directory():
     try:
