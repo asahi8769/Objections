@@ -7,4 +7,5 @@ dist
 build
 *.db
 *.exe
+*.spec
 !chromedriver.exe

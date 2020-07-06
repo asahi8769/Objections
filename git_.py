@@ -19,8 +19,8 @@ class GitCommandLines():
         subprocess_cmd (f'git remote remove origin')
 
     def clone_rep(self):
-        dir = os.path.relpath(old_ver_directory(), os.getcwd())
-        subprocess_cmd (f'git clone {self.repository[:-4]} {dir}')
+        rel_dir = os.path.relpath(old_ver_directory(), os.getcwd())
+        subprocess_cmd (f'git clone {self.repository[:-4]} {rel_dir}')
 
     def history(self):
         subprocess_cmd (f'git log ')
