@@ -1,27 +1,5 @@
-from subprocess import Popen, PIPE
-from datetime import datetime
+from utility_functions import subprocess_cmd, old_ver_directory
 import os
-
-
-def subprocess_cmd(command):
-    print(command)
-    try :
-        process = Popen(command, stdout=PIPE, shell=True, universal_newlines=True)
-        proc_stdout = process.communicate()[0].strip()
-    except Exception as e:
-        process = Popen(command, stdout=PIPE, shell=True, universal_newlines=False)
-        proc_stdout = process.communicate()[0].strip()
-    print(proc_stdout)
-
-
-def old_ver_directory():
-    try:
-        os.mkdir(os.path.join(os.getcwd(), 'old'))
-    except Exception as e:
-        pass
-    dir = os.path.join(os.getcwd(), 'old', f'old_ver_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
-    os.mkdir(dir)
-    return dir
 
 
 class GitCommandLines():

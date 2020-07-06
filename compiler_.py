@@ -1,5 +1,6 @@
 from subprocess import Popen, PIPE
 import os, sys
+from utility_functions import subprocess_cmd, path_find
 
 sys.path.insert(1, os.pardir)
 
@@ -20,19 +21,6 @@ def packaging(filename, *bindings):
                     print(os.path.join(binding, basename(filePath)))
                     zipObj.write(filePath, os.path.join(basename(folderName), basename(filePath)))
         print(f'패키징을 완료하였습니다. {zipname}')
-
-
-def subprocess_cmd(command):
-    process = Popen(command, stdout=PIPE, shell=True, universal_newlines=True)
-    proc_stdout = process.communicate()[0].strip()
-    print(proc_stdout)
-
-
-def path_find(name, *paths):
-    for path in paths:
-        for root, dirs, files in os.walk(path):
-            if name in files:
-                return os.path.join(root, name)
 
 
 if __name__ == "__main__":
