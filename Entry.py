@@ -7,14 +7,16 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import warnings, time, operator, gc, sys, os, pyautogui
+from utility_functions import path_find
 import pandas as pd
 from datetime import datetime
+
 
 URL = "https://partner.hyundai.com/gscm/"
 GSCM_ID = os.environ.get ('GSCM_ID').upper()
 GSCM_PW = os.environ.get ('GSCM_PW')
 
-GC_DRIVER = r'driver/chromedriver.exe'
+GC_DRIVER = path_find('chromedriver.exe', os.getcwd())
 COORDINATES = {'QAMENU' : (309, 178), 'YYMMCOORD' : (670, 204), 'MM_COORD' : (716, 204), 'ROW_COORD' : (308, 380),
                'ISSUENO' : (680, 238)}
 
@@ -254,7 +256,7 @@ class CustomerObjection():
 class Pipeline:
     def __init__(self, filename):
         self.filename = filename
-        with open ('Cookies_objection/objection.xls', 'rb') as file:
+        with open (self.filename, 'rb') as file:
             self.df = pd.read_excel (file)
             self.df.fillna('', inplace=True)
         self.df = self.df[(self.df['Customer Reivew_'] != 'reject')&(self.df['Customer Reivew_'] != 'wait')&(
@@ -293,7 +295,7 @@ class Pipeline:
 
     @staticmethod
     def run():
-        filename = 'objection'
+        filename = path_find('objection.xls', os.getcwd())
         obj = Pipeline (filename)
         data = obj.isolate ()
         obj.print_example ()
