@@ -166,10 +166,11 @@ class CustomerObjection():
                 By.XPATH, "//*[@id='K_MKOB_TYPE_CD']/option[@value='{}']".format(feed[4])))).click()
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
             By.XPATH, '//*[@id="searchBtn"]'))).click()
-        # pyautogui.hotkey('alt', 'tab', interval=0.1)
         # ans = input('Verify your objections. Register?[Y/N, Default: Y] : ')
         ans = pyautogui.confirm(text=f'이의제기 등록합니다. 교류클레임 여부 확인하세요. \n건수: {len(feed[6])}, 금액: {feed[-1]}.', title='등록확인', buttons=['OK', 'NO'])
+        # pyautogui.hotkey('alt', 'tab', interval=0.1)
         if ans.lower() != 'NO':
+            pyautogui.hotkey('alt', 'tab', interval=0.1)
             self.length += len(feed[6])
             self.amount += feed[-1]
             WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
@@ -188,8 +189,8 @@ class CustomerObjection():
             pyautogui.press('enter')
             time.sleep(0.5)
             self.logging (feed, 'Registered')
-        # else:
-            # pyautogui.hotkey('alt', 'tab', interval=0.1)
+        else:
+            pyautogui.hotkey('alt', 'tab', interval=0.1)
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="menu"]/div[3]/ul/li[3]/a'))).click()
 
@@ -203,7 +204,7 @@ class CustomerObjection():
             By.XPATH, "//select[@name='K_PRDN_CORP_CD']/option[text()='{}']".format(self.customer)))).click()
         self.click_element_id('searchBtn', 3)
         # pyautogui.hotkey('alt', 'tab', interval=0.1)
-        # input ('Request your objections. Press <ENTER> to terminate...')
+        input ('Request your objections. Press <ENTER> to terminate...')
         pyautogui.alert(text=f'Customer : {self.customer},Length : {self.length}, Amount : {self.amount} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n프로그램 종료합니다.', title='프로세스종료알림', button='OK')
 
     def mainloop(self):

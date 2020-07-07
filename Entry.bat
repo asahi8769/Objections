@@ -1,7 +1,7 @@
 @ECHO ON
 title Entry Start
 
-cd /D D:\devs\consult2\Objections
+cd /D D:\devs\Objections
 
 python Entry.py
 
