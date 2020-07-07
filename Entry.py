@@ -205,7 +205,6 @@ class CustomerObjection():
         self.click_element_id('searchBtn', 3)
         # pyautogui.hotkey('alt', 'tab', interval=0.1)
         # input ('Request your objections. Press <ENTER> to terminate...')
-        pyautogui.alert(text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n프로그램 종료합니다.', title='프로세스종료알림', button='OK')
 
     def mainloop(self):
         now = datetime.now ()
@@ -230,6 +229,9 @@ class CustomerObjection():
         with open('Cookies_objection/log.txt', 'a+') as txt:
             txt.write(f'{dt_string}, {elapsed} Registration Finished\n')
         self.request(min_year)  # todo : verify usability add lines if needed
+        pyautogui.alert(
+            text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount}, 소요시간 : {elapsed} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n프로그램 종료합니다.',
+            title='프로세스종료알림', button='OK')
         self.close()
 
     def logging(self, feed, stage):
