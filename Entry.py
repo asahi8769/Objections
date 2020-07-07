@@ -166,9 +166,9 @@ class CustomerObjection():
                 By.XPATH, "//*[@id='K_MKOB_TYPE_CD']/option[@value='{}']".format(feed[4])))).click()
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
             By.XPATH, '//*[@id="searchBtn"]'))).click()
+        # pyautogui.hotkey('alt', 'tab', interval=0.1)
         # ans = input('Verify your objections. Register?[Y/N, Default: Y] : ')
         ans = pyautogui.confirm(text=f'이의제기 등록합니다. 교류클레임 여부 확인하세요. \n건수: {len(feed[6])}, 금액: {feed[-1]}.', title='등록확인', buttons=['OK', 'NO'])
-        # pyautogui.hotkey('alt', 'tab', interval=0.1)
         if ans.lower() != 'NO':
             pyautogui.hotkey('alt', 'tab', interval=0.1)
             self.length += len(feed[6])
