@@ -170,7 +170,7 @@ class CustomerObjection():
             By.XPATH, '//*[@id="searchBtn"]'))).click()
         # pyautogui.hotkey('alt', 'tab', interval=0.1)
         # ans = input('Verify your objections. Register?[Y/N, Default: Y] : ')
-        ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. \n건수: {len(feed[6])}, 금액: {feed[-1]}.', title='등록확인', buttons=['OK', 'NO'])
+        ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. \n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {len(feed[3])}.', title='등록확인', buttons=['OK', 'NO'])
         if ans.lower() != 'NO':
             pyautogui.hotkey('alt', 'tab', interval=0.1)
             self.length += len(feed[6])
@@ -282,7 +282,7 @@ class Pipeline:
                 val_list.append ([partial_df['LIST']])
             val_list.append (round (partial_df['전체'].sum (), 2))
             self.storage.append(val_list)
-        self.storage = sorted(self.storage, key = operator.itemgetter(0,1,2,6))
+        self.storage = sorted(self.storage, key = operator.itemgetter(0,1,3,2,6))
         return self.storage
 
     def print_example(self):
