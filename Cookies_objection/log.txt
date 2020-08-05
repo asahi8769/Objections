@@ -807,3 +807,14 @@
 
 2020/07/10 Initiated
 2020/07/10 09:16:11 HMMA 2019-11-1WA-D, (6, 7, 8), Created
+
+2020/08/05 Initiated
+
+2020/08/05 Initiated
+2020/08/05 14:14:53 HMMC 2020-02-1WW-E-Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 14:17:24 HMMC 2020-02-1WW-E Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 14:19:33 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created

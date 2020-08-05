@@ -240,7 +240,7 @@ class CustomerObjection():
         now = datetime.now()
         dt_string = now.strftime("%Y/%m/%d %H:%M:%S")
         list_no = ', '.join([str(i) for i in feed[6]])
-        self.log = dt_string+' '+ feed[0]+' '+ feed[5][3]+'-'+ feed[1][0]+f', ({list_no})' +f', {stage}\n'
+        self.log = dt_string+' '+ feed[0]+' '+ feed[5][3]+'-'+ feed[1][0]+', '+ feed[3]+f', ({list_no})' +f', {stage}\n'
         with open('Cookies_objection/log.txt', 'a+') as txt:
             txt.write(self.log)
 
@@ -282,7 +282,7 @@ class Pipeline:
                 val_list.append ([partial_df['LIST']])
             val_list.append (round (partial_df['전체'].sum (), 2))
             self.storage.append(val_list)
-        self.storage = sorted(self.storage, key = operator.itemgetter(0,1,3,2,6))
+        self.storage = sorted(self.storage, key = operator.itemgetter(0,1,2,3,6))
         return self.storage
 
     def print_example(self):
