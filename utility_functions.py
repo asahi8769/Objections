@@ -31,12 +31,12 @@ def subprocess_cmd(command):
     print(proc_stdout)
 
 
-def old_ver_directory():
+def make_pulled_dir():
     try:
-        os.mkdir(os.path.join(os.getcwd(), 'old'))
+        os.mkdir(os.path.join(os.getcwd(), 'pulled'))
     except Exception as e:
         pass
-    dir = os.path.join(os.getcwd(), 'old', f'old_ver_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
+    dir = os.path.join(os.getcwd(), 'pulled', f'pulled_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
     os.mkdir(dir)
     return dir
 

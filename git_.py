@@ -1,5 +1,5 @@
-from utility_functions import subprocess_cmd, old_ver_directory
-import os
+from utility_functions import *
+import os, shutil
 
 
 class GitCommandLines():
@@ -19,11 +19,19 @@ class GitCommandLines():
         subprocess_cmd (f'git remote remove origin')
 
     def clone_rep(self):
-        rel_dir = os.path.relpath(old_ver_directory(), os.getcwd())
+        rel_dir = os.path.relpath(make_pulled_dir(), os.getcwd())
+        subprocess_cmd(f'git rm -rf --cached .')
         subprocess_cmd (f'git clone {self.repository[:-4]} {rel_dir}')
 
     def history(self):
         subprocess_cmd (f'git log ')
+
+    def manage_pulls(self):
+        if len(sorted(os.listdir('pulled'), reverse=True)) > 3:
+            print('Pulls :', len(sorted(os.listdir('pulled'), reverse=True)))
+            shutil.rmtree(os.path.join(
+                'pulled', sorted(os.listdir('pulled'), reverse=True)[3-len(sorted(os.listdir('pulled'), reverse=True))]), ignore_errors=True)
+            # os.rmdir(os.path.join('pulled', sorted(os.listdir('pulled'), reverse=True)[-1]))
 
 
 if __name__ == "__main__":
