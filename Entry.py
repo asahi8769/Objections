@@ -84,7 +84,6 @@ class CustomerObjection():
         time.sleep(3)
         self.driver.switch_to.window(self.driver.window_handles[1])
 
-
     def input_year_month(self, issuemonth, wait):
         """Redesigned on 2020.03.30"""
         seq_m = self.click_element_id('K_RPYM_WNTI_MM', 3)
