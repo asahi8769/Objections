@@ -5,11 +5,17 @@ import os, shutil
 class GitCommandLines():
     def __init__(self):
         self.repository = r'https://github.com/asahi8769/Objections.git'
+        self.abs_dir = None
+        self.rel_dir = None
         subprocess_cmd (f'git config --global user.name Ilhee Lee')
         subprocess_cmd (f'git config --global user.email asahi8769@gmail.com')
 
     def push_rep(self):
         self.clone_rep()
+        self.manage_pulls()
+        if self.ask_overwrite() is False:
+            os.startfile(self.rel_dir)
+            return
         subprocess_cmd (f'git init')
         subprocess_cmd (f'git add .')
         subprocess_cmd (f'git config --global http.sslVerify false')
@@ -25,6 +31,10 @@ class GitCommandLines():
 
     def history(self):
         subprocess_cmd (f'git log ')
+
+    def ask_overwrite(self):
+        if input('Overwrite current repository? (y/n, Default : n) :').lower() != 'y':
+            return False
 
     def manage_pulls(self):
         if len(sorted(os.listdir('pulled'), reverse=True)) > 3:
