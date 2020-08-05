@@ -32,6 +32,7 @@ class CustomerObjection():
         """FOR IE, USE  webdriver.Ie(GI_DRIVER) """
         super().__init__()
         self.objset = Pipeline.run()
+        # print(self.objset)
         self.customer = self.objset[0][0].upper()
         self.driver = webdriver.Chrome(GC_DRIVER, options=CHROME_OPTIONS)
         self.driver.get(URL)
@@ -83,10 +84,6 @@ class CustomerObjection():
         time.sleep(3)
         self.driver.switch_to.window(self.driver.window_handles[1])
 
-    @staticmethod
-    def feeder(objset):
-        for feed in objset:
-            yield feed
 
     def input_year_month(self, issuemonth, wait):
         """Redesigned on 2020.03.30"""
@@ -97,7 +94,7 @@ class CustomerObjection():
         seq_m.send_keys(issuemonth[4:6])
         time.sleep(wait)
 
-    def stopper(self, num):
+    def counter(self, num):
         self.sequence += 1
         if self.stop:
             if self.sequence == num+1:
@@ -168,11 +165,11 @@ class CustomerObjection():
                 By.XPATH, "//*[@id='K_MKOB_TYPE_CD']/option[@value='{}']".format(feed[4])))).click()
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
             By.XPATH, '//*[@id="searchBtn"]'))).click()
-        # pyautogui.hotkey('alt', 'tab', interval=0.1)
-        # ans = input('Verify your objections. Register?[Y/N, Default: Y] : ')
-        ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. \n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {len(feed[3])}.', title='등록확인', buttons=['OK', 'NO'])
-        if ans.lower() != 'NO':
-            pyautogui.hotkey('alt', 'tab', interval=0.1)
+        if self.sequence == 1:
+            pyautogui.hotkey('alt', 'tab', 'left')
+        ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. \n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {feed[3]}.', title='등록확인', buttons=['OK', 'NO'])
+        if ans.upper() != 'NO':
+            self.driver.switch_to.window(self.driver.window_handles[1])
             self.length += len(feed[6])
             self.amount += feed[-1]
             WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
@@ -192,7 +189,7 @@ class CustomerObjection():
             time.sleep(0.5)
             self.logging (feed, 'Registered')
         else:
-            pyautogui.hotkey('alt', 'tab', interval=0.1)
+            self.driver.switch_to.window(self.driver.window_handles[1])
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="menu"]/div[3]/ul/li[3]/a'))).click()
 
@@ -205,8 +202,6 @@ class CustomerObjection():
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
             By.XPATH, "//select[@name='K_PRDN_CORP_CD']/option[text()='{}']".format(self.customer)))).click()
         self.click_element_id('searchBtn', 3)
-        # pyautogui.hotkey('alt', 'tab', interval=0.1)
-        # input ('Request your objections. Press <ENTER> to terminate...')
 
     def mainloop(self):
         now = datetime.now ()
@@ -218,9 +213,9 @@ class CustomerObjection():
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="menu"]/div[3]/ul/li[3]/a'))).click()
         min_year = list()
-        for feed in self.feeder(self.objset):
+        for feed in self.objset:
             min_year.append (int (feed[5][0] + feed[5][1]))
-            self.stopper(3)
+            self.counter(3)
             self.creation_loop(feed)
             self.register(feed)
         end = time.time()
@@ -230,7 +225,7 @@ class CustomerObjection():
         dt_string = now.strftime("%Y/%m/%d")
         with open('Cookies_objection/log.txt', 'a+') as txt:
             txt.write(f'{dt_string}, {elapsed} Registration Finished\n')
-        self.request(min_year)  # todo : verify usability add lines if needed
+        self.request(min_year)
         pyautogui.alert(
             text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount}, \n소요시간 : {elapsed} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n의뢰 한 후 확인클릭해서 종료하세요.',
             title='프로세스종료알림', button='OK')
@@ -249,6 +244,10 @@ class CustomerObjection():
         self.driver.quit ()
 
     def __del__(self):
+        try :
+            self.driver.delete_all_cookies()
+        except Exception as e:
+            print('Screen terminated according to nominal procedure.')
         os.system("taskkill /f /im chromedriver.exe /T")
         gc.collect()
 

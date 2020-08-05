@@ -818,3 +818,137 @@
 
 2020/08/05 Initiated
 2020/08/05 14:19:33 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 14:37:10 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 14:39:27 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 14:41:41 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/05 14:42:12 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+
+2020/08/05 Initiated
+2020/08/05 14:43:19 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 14:44:47 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 14:46:10 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 14:49:25 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 14:52:05 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 14:53:35 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/05 14:53:50 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+
+2020/08/05 Initiated
+2020/08/05 15:02:03 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 15:06:55 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 15:08:58 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 15:10:45 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 15:12:25 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 15:13:53 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 15:15:26 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 15:16:44 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 15:21:05 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/05 15:21:17 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+
+2020/08/05 Initiated
+2020/08/05 15:24:26 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/05 15:24:37 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+2020/08/05 15:24:41 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+
+2020/08/05 Initiated
+2020/08/05 15:26:40 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/05 15:26:50 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+2020/08/05 15:26:53 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+2020/08/05 15:27:02 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Registered
+2020/08/05 15:27:07 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Created
+2020/08/05 15:27:22 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Registered
+2020/08/05 15:27:26 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Created
+2020/08/05 15:28:08 KMM 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/05 Initiated
+2020/08/05 15:29:37 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+2020/08/05 15:29:57 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Registered
+2020/08/05 15:30:02 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Created
+2020/08/05 15:30:12 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Registered
+2020/08/05 15:30:17 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Created
+2020/08/05 15:30:26 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Registered
+
+2020/08/05 Initiated
+2020/08/05 15:32:53 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/05 15:33:03 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+2020/08/05 15:33:07 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+2020/08/05 15:33:22 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Registered
+2020/08/05 15:33:27 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Created
+2020/08/05 15:33:45 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Registered
+2020/08/05 15:33:50 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Created
+2020/08/05 15:34:02 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Registered
+2020/08/05 15:34:07 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Created
+2020/08/05 15:34:29 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Registered
+2020/08/05, Elapsed 01:53 Registration Finished
+
+2020/08/05 Initiated
+2020/08/05 15:36:57 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/05 15:37:06 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+2020/08/05 15:37:10 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+2020/08/05 15:37:19 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Registered
+2020/08/05 15:37:23 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Created
+2020/08/05 15:37:32 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Registered
+
+2020/08/05 Initiated
+2020/08/05 15:40:29 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/05 15:40:44 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+2020/08/05 15:40:47 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+2020/08/05 15:40:56 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Registered
+2020/08/05 15:41:01 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Created
+2020/08/05 15:41:10 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Registered
+2020/08/05 15:41:15 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Created
+2020/08/05 15:41:38 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Registered
+2020/08/05 15:41:43 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Created
+2020/08/05 15:41:51 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Registered
+2020/08/05, Elapsed 01:38 Registration Finished
+
+2020/08/05 Initiated
+2020/08/05 15:49:32 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/05 15:49:45 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+2020/08/05 15:49:49 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+2020/08/05 15:49:58 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Registered
+2020/08/05 15:50:03 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Created
+
+2020/08/05 Initiated
+2020/08/05 15:52:26 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/05 15:52:37 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+2020/08/05 15:52:41 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+2020/08/05 15:53:02 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Created
+2020/08/05 15:53:22 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Registered
+2020/08/05 15:53:27 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Created
+2020/08/05 15:54:07 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Created
+2020/08/05, Elapsed 02:27 Registration Finished
+
+2020/08/05 Initiated
+2020/08/05 15:55:25 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
