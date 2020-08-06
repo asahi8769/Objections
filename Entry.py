@@ -226,8 +226,9 @@ class CustomerObjection():
             txt.write(f'{dt_string}, {elapsed} Registration Finished\n')
         self.request(min_year)
         pyautogui.alert(
-            text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount}, \n소요시간 : {elapsed} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n의뢰 한 후 확인클릭해서 종료하세요.',
+            text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount}, \n소요시간 : {elapsed} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n의뢰 한 후 브라우저를 닫으세요.',
             title='프로세스종료알림', button='OK')
+        input ('Press <ENTER> to terminate...')
         self.close()
 
     def logging(self, feed, stage):
@@ -239,8 +240,11 @@ class CustomerObjection():
             txt.write(self.log)
 
     def close(self):
-        self.driver.delete_all_cookies ()
-        self.driver.quit ()
+        try:
+            self.driver.delete_all_cookies ()
+            self.driver.quit ()
+        except Exception as e:
+            pass
 
     def __del__(self):
         try :
