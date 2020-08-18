@@ -952,3 +952,38 @@
 
 2020/08/05 Initiated
 2020/08/05 15:55:25 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+
+2020/08/18 Initiated
+2020/08/18, Elapsed 00:12 Registration Finished
+
+2020/08/18 Initiated
+2020/08/18 13:49:25 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/18 13:49:50 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+2020/08/18 13:50:04 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Created
+2020/08/18 13:51:05 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Created
+
+2020/08/18 Initiated
+2020/08/18 13:52:35 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/18 13:52:45 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+2020/08/18 13:52:48 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+2020/08/18 13:52:57 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Registered
+2020/08/18 13:53:01 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Created
+2020/08/18 13:53:13 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Registered
+2020/08/18 13:53:17 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Created
+2020/08/18 13:53:27 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Registered
+2020/08/18 13:53:31 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Created
+2020/08/18 13:53:40 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Registered
+2020/08/18, Elapsed 01:19 Registration Finished
+
+2020/08/18 Initiated
+2020/08/18 13:56:27 HMMC 2020-02-1WW-E, Carry In Parts, (148), Created
+2020/08/18 13:57:00 HMMC 2020-02-1WW-E, Carry In Parts, (148), Registered
+2020/08/18 13:57:04 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Created
+2020/08/18 13:57:12 HMMC 2020-02-1WW-E, Other Vendor(CKDK), (357), Registered
+2020/08/18 13:57:16 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Created
+2020/08/18 13:57:25 HMMC 2020-02-1WW-E, Other Vendor(SAFE), (376, 380), Registered
+2020/08/18 13:57:29 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Created
+2020/08/18 13:57:38 KMM 2020-02-1WW-D, Other Vendor, (344, 357), Registered
+2020/08/18 13:57:42 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Created
+2020/08/18 13:57:50 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Registered
+2020/08/18, Elapsed 01:38 Registration Finished

@@ -31,16 +31,15 @@ class CustomerObjection():
     def __init__(self, stop=False):
         """FOR IE, USE  webdriver.Ie(GI_DRIVER) """
         super().__init__()
-        self.objset = Pipeline.run()
-        # print(self.objset)
-        self.customer = self.objset[0][0].upper()
+        self.objset = Pipeline.objection_generator()
+        self.customer = None
         self.driver = webdriver.Chrome(GC_DRIVER, options=CHROME_OPTIONS)
         self.driver.get(URL)
         self.sequence = 0
         self.stop = stop
         self.length = 0
         self.amount = 0
-        self.tot_seq = len(self.objset)
+        self.tot_seq = len(list(Pipeline.objection_generator()))
         self.log = None
 
     def click_element_id(self, ID, sec):
@@ -213,6 +212,7 @@ class CustomerObjection():
             (By.XPATH, '//*[@id="menu"]/div[3]/ul/li[3]/a'))).click()
         min_year = list()
         for feed in self.objset:
+            self.customer = feed[0].upper()
             min_year.append (int (feed[5][0] + feed[5][1]))
             self.counter(3)
             self.creation_loop(feed)
@@ -296,12 +296,13 @@ class Pipeline:
             print ('Index {} : {}'.format (i, item))
 
     @staticmethod
-    def run():
+    def objection_generator():
         filename = path_find('objection.xls', os.getcwd())
         obj = Pipeline (filename)
         data = obj.isolate ()
         obj.print_example ()
-        return data
+        for datum in data:
+            yield datum
 
 
 if __name__ == '__main__':
