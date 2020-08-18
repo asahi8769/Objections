@@ -261,14 +261,21 @@ class Pipeline:
         with open (self.filename, 'rb') as file:
             self.df = pd.read_excel (file)
             self.df.fillna('', inplace=True)
-        self.df = self.df[(self.df['Customer Reivew_'] != 'reject')&(self.df['Customer Reivew_'] != 'wait')&(
-                self.df['Customer Reivew_'] != 'done')]
+        self.df = self.df[~(self.df['Customer Reivew_'].str.contains('reject')) &
+                          ~(self.df['Customer Reivew_'].str.contains('wait')) &
+                          ~(self.df['Customer Reivew_'].str.contains('pending')) &
+                          ~(self.df['Customer Reivew_'].str.contains('denied')) &
+                          ~(self.df['Customer Reivew_'].str.contains('wrong')) &
+                          ~(self.df['Customer Reivew_'].str.contains('deny')) &
+                          ~(self.df['Customer Reivew_'].str.contains('done')) &
+                          ~(self.df['Customer Reivew_'].str.contains('cancel')) &
+                          ~(self.df['Customer Reivew_'].str.contains('기각'))
+        ]
         self.customer = self.df.iloc[0]['고객사']
         delimiter = ',,'
         self.df['KEY'] = self.df['고객사'] + delimiter + self.df['E/D'] + delimiter + self.df['ISSUE NO'] +\
                          delimiter + self.df['OBJECTION_'].apply(str) + delimiter + self.df['유형']
         self.keys = set (self.df['KEY'])
-        # print(self.keys)
         self.df.set_index ('KEY', inplace=True)
         self.storage = list()
 
