@@ -31,6 +31,7 @@ class CustomerObjection():
     def __init__(self, stop=False):
         """FOR IE, USE  webdriver.Ie(GI_DRIVER) """
         super().__init__()
+        self.tot_seq = len(list(Pipeline.objection_generator()))
         self.objset = Pipeline.objection_generator()
         self.customer = None
         self.driver = webdriver.Chrome(GC_DRIVER, options=CHROME_OPTIONS)
@@ -39,7 +40,6 @@ class CustomerObjection():
         self.stop = stop
         self.length = 0
         self.amount = 0
-        self.tot_seq = len(list(Pipeline.objection_generator()))
         self.log = None
 
     def click_element_id(self, ID, sec):
@@ -298,7 +298,7 @@ class Pipeline:
     @staticmethod
     def objection_generator():
         filename = path_find('objection.xls', os.getcwd())
-        obj = Pipeline (filename)
+        obj = Pipeline(filename)
         data = obj.isolate ()
         obj.print_example ()
         for datum in data:
