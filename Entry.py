@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.options import Options as Chrome_options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-import warnings, time, operator, gc, sys, os, pyautogui
+import warnings, time, operator, gc, sys, os, pyautogui, pyperclip
 from utility_functions import path_find
 import pandas as pd
 from datetime import datetime
@@ -163,6 +163,7 @@ class CustomerObjection():
                 By.XPATH, "//*[@id='K_MKOB_TYPE_CD']/option[@value='{}']".format(feed[4])))).click()
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
             By.XPATH, '//*[@id="searchBtn"]'))).click()
+        pyperclip.copy(feed[3])
         if self.sequence == 1:
             pyautogui.hotkey('alt', 'tab', 'left')
         ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. \n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {feed[3]}.', title='등록확인', buttons=['OK', 'NO'])
