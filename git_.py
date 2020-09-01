@@ -13,9 +13,9 @@ class GitCommandLines():
     def push_rep(self):
         self.clone_rep()
         self.manage_pulls()
-        if self.ask_overwrite() is False:
-            os.startfile(self.rel_dir)
-            return
+        # if self.ask_overwrite() is False:
+        #     os.startfile(self.rel_dir)
+        #     return
         subprocess_cmd (f'git init')
         subprocess_cmd (f'git add .')
         subprocess_cmd (f'git config --global http.sslVerify false')

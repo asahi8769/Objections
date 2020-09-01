@@ -987,3 +987,7 @@
 2020/08/18 13:57:42 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Created
 2020/08/18 13:57:50 KMM 2020-02-1WW-E, Other Vendor, (376, 380), Registered
 2020/08/18, Elapsed 01:38 Registration Finished
+
+2020/09/01 Initiated
+
+2020/09/01 Initiated
