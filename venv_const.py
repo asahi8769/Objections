@@ -8,6 +8,7 @@ def install(lib):
 
 # subprocess_cmd(f'cd {dir_venv_64}  & {install("pyinstaller")} & {install("xlrd")} & {install("selenium")} & '
 #                f'{install("pandas")} & {install("pyautogui")}')
-subprocess_cmd(f'cd {dir_venv_64} & {install("pyperclip")}')
+# subprocess_cmd(f'cd {dir_venv_64} & {install("pyperclip")}')
 # subprocess_cmd(f'cd {dir_venv_64} & {install("pip --upgrade pip")}')
 # subprocess_cmd(f'cd {dir_venv_64} & {install("pyinstaller --upgrade pyinstaller")}')
+# subprocess_cmd(f'cd {dir_venv_64} & {install("chromedriver-binary")}')

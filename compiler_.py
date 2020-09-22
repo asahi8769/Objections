@@ -21,4 +21,4 @@ if __name__ == "__main__":
     print(install_command)
     subprocess_cmd(f'cd {dir_venv_64} & {install_command} & cd dist & copy {file_name_exe} {dir_loc}')
     packaging(file_name_exe, 'Cookies_objection', 'driver')
-    # os.startfile('dist')
+    os.startfile('dist')

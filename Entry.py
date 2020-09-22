@@ -52,7 +52,10 @@ class CustomerObjection():
             pass
 
     def log_in(self):
-        self.click_element_id('mainframe_VFrameSet_LoginFrame_CommLgds010_1_form_ImageViewer00', 7)
+        self.click_element_id('mainframe_VFrameSet_LoginFrame_CommLgds010_3_form_ImageViewer00', 3)
+        self.click_element_id('mainframe_VFrameSet_LoginFrame_CommLgds010_3_form_ImageViewer00', 1)
+        self.click_element_id('mainframe_VFrameSet_LoginFrame_CommLgds010_2_form_ImageViewer00', 1)
+        self.click_element_id('mainframe_VFrameSet_LoginFrame_CommLgds010_1_form_ImageViewer00', 1)
         self.click_element_id ('mainframe_VFrameSet_LoginFrame_CommLgds010_0_form_ImageViewer00', 1)
         id_box = self.driver.find_element_by_id('mainframe_VFrameSet_LoginFrame_form_div_logo_edt_userId_input')
         login_button = self.driver.find_element_by_id('mainframe_VFrameSet_LoginFrame_form_div_logo_btn_login')
