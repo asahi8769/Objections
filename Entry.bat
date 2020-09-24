@@ -1,8 +1,8 @@
 @ECHO ON
 title Entry Start
 
-cd /D D:\devs\Objections
+cd /D %~dp0\
 
-python Entry.py
+%~dp0\venv\Scripts\python.exe Entry.py
 
 cmd.exe
