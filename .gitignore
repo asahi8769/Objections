@@ -9,3 +9,4 @@ build
 *.exe
 *.spec
 !chromedriver.exe
+debug.log
