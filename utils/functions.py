@@ -57,3 +57,7 @@ def packaging(filename, *bindings):
 
 def install(lib):
     return f'pip --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org install {lib}'
+
+
+def venv_dir(foldername='venv'):
+    return os.path.join(os.getcwd(), foldername)
