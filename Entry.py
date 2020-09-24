@@ -24,8 +24,12 @@ class CustomerObjection:
     CHROME_OPTIONS.add_argument("--incognito")
 
     def __init__(self, stop=False):
-        self.tot_seq = len(list(Pipeline.objection_generator()))
-        self.objset = Pipeline.objection_generator()
+        objections = Pipeline()
+        self.idx = []
+        self.log = None
+        self.df = objections.df
+        self.tot_seq = len(objections.df)
+        self.objset = objections.objection_generator()
         self.customer = None
         self.driver = webdriver.Chrome(self.GC_DRIVER, options=self.CHROME_OPTIONS)
         self.driver.get(URL)
@@ -33,7 +37,6 @@ class CustomerObjection:
         self.stop = stop
         self.length = 0
         self.amount = 0
-        self.log = None
 
     def click_element_id(self, ID, sec):
         try:
@@ -185,6 +188,7 @@ class CustomerObjection:
             pyautogui.press('enter')
             time.sleep(0.5)
             self.logging (feed, 'Registered')
+            self.update_hist(feed)
         else:
             self.driver.switch_to.window(self.driver.window_handles[1])
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
@@ -238,6 +242,9 @@ class CustomerObjection:
         with open('Cookies_objection/log.txt', 'a+') as txt:
             txt.write(self.log)
 
+    def update_hist(self, feed):
+        self.idx.append(feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4])
+
     def close(self):
         try:
             self.driver.delete_all_cookies ()
@@ -246,21 +253,31 @@ class CustomerObjection:
             pass
 
     def __del__(self):
+        # if len(self.idx) is not 0:
+        #     self.df.loc[self.idx]['Customer Reivew_'] = 'Registered'
+        # self.df.to_excel('Cookies_objection\objection.xls', index=False)
         try :
             self.driver.delete_all_cookies()
         except Exception as e:
             print('Screen terminated according to nominal procedure.')
+
         os.system("taskkill /f /im chromedriver.exe /T")
         gc.collect()
 
 
 class Pipeline:
-    def __init__(self, filename):
+    def __init__(self, filename='Cookies_objection\objection.xls'):
         self.filename = filename
         with open (self.filename, 'rb') as file:
             self.df = pd.read_excel (file)
             self.df.fillna('', inplace=True)
-        self.df = self.df[~(self.df['Customer Reivew_'].str.contains('reject')) &
+
+        self.customer = self.df.iloc[0]['고객사']
+        delimiter = ',,'
+        self.df['KEY'] = self.df['고객사'] + delimiter + self.df['E/D'] + delimiter + self.df['ISSUE NO'] +\
+                         delimiter + self.df['OBJECTION_'].apply(str) + delimiter + self.df['유형']
+        self.df.set_index('KEY', inplace=True)
+        self.df_ = self.df[~(self.df['Customer Reivew_'].str.contains('reject')) &
                           ~(self.df['Customer Reivew_'].str.contains('wait')) &
                           ~(self.df['Customer Reivew_'].str.contains('pending')) &
                           ~(self.df['Customer Reivew_'].str.contains('denied')) &
@@ -268,22 +285,21 @@ class Pipeline:
                           ~(self.df['Customer Reivew_'].str.contains('deny')) &
                           ~(self.df['Customer Reivew_'].str.contains('done')) &
                           ~(self.df['Customer Reivew_'].str.contains('cancel')) &
-                          ~(self.df['Customer Reivew_'].str.contains('기각'))
+                          ~(self.df['Customer Reivew_'].str.contains('기각')) &
+                          ~(self.df['Customer Reivew_'].str.contains('Registered'))
         ]
-        self.customer = self.df.iloc[0]['고객사']
-        delimiter = ',,'
-        self.df['KEY'] = self.df['고객사'] + delimiter + self.df['E/D'] + delimiter + self.df['ISSUE NO'] +\
-                         delimiter + self.df['OBJECTION_'].apply(str) + delimiter + self.df['유형']
-        self.keys = set (self.df['KEY'])
-        self.df.set_index ('KEY', inplace=True)
+        self.keys = set (self.df_.index)
         self.storage = list()
+        self.data = self.isolate()
+        self.print_example()
 
     def isolate(self):
         for key in self.keys:
+            print(key)
             val_list = key.split (',,')
             val_list.append ([val_list[2][0:4], val_list[2][4:6], val_list[2][6:],
                               val_list[2][0:4] + '-' + val_list[2][4:6] + '-' + val_list[2][6:]])
-            partial_df = self.df.loc[key]
+            partial_df = self.df_.loc[key]
             try:
                 val_list.append (sorted (partial_df['LIST'].to_numpy ().tolist ()))
             except AttributeError:
@@ -296,18 +312,13 @@ class Pipeline:
     def print_example(self):
         example = list(enumerate (self.storage))[0][1]
         print('\nNumber of Objections : {}, Total Amount : {:,.2f}, Total Sequence : {}'.format(
-            len(self.df), round(self.df['전체'].sum(),2), len(self.storage)))
+            len(self.df_), round(self.df_['전체'].sum(),2), len(self.storage)))
         print ('\nFeed Format : {}'.format(example))
         for i, item in enumerate (example):
             print ('Index {} : {}'.format (i, item))
 
-    @classmethod
-    def objection_generator(cls):
-        filename = path_find('objection.xls', os.getcwd())
-        obj = cls(filename)
-        data = obj.isolate ()
-        obj.print_example ()
-        for datum in data:
+    def objection_generator(self):
+        for datum in self.data:
             yield datum
 
 

@@ -998,3 +998,7 @@
 
 2020/09/24 Initiated
 2020/09/24 15:30:41 KMM 2019-06-1WW-E, att2. this problem is caused by ECU software update, which is not attributable to the sub vendor(Continental-Bitesco), (177), Created
+
+2020/09/24 Initiated
+
+2020/09/24 Initiated
