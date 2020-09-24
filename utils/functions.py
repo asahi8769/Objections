@@ -53,3 +53,7 @@ def packaging(filename, *bindings):
                     print(os.path.join(binding, basename(filePath)))
                     zipObj.write(filePath, os.path.join(basename(folderName), basename(filePath)))
         print(f'패키징을 완료하였습니다. {zipname}')
+
+
+def install(lib):
+    return f'pip --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org install {lib}'

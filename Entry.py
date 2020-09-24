@@ -1,3 +1,6 @@
+from utils.config import *
+from utils.functions import path_find
+from datetime import datetime
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
@@ -7,34 +10,24 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import warnings, time, operator, gc, sys, os, pyautogui, pyperclip
-from utility_functions import path_find
 import pandas as pd
-from datetime import datetime
 
 
-URL = "https://partner.hyundai.com/gscm/"
-GSCM_ID = os.environ.get ('GSCM_ID').upper()
-GSCM_PW = os.environ.get ('GSCM_PW')
-
-GC_DRIVER = path_find('chromedriver.exe', os.getcwd())
-COORDINATES = {'QAMENU' : (309, 178), 'YYMMCOORD' : (670, 204), 'MM_COORD' : (716, 204), 'ROW_COORD' : (308, 380),
-               'ISSUENO' : (680, 238)}
-
-CHROME_OPTIONS = Chrome_options()
-CHROME_OPTIONS.add_argument("--start-maximized")
-CHROME_OPTIONS.add_argument("--disable-extensions")
-CHROME_OPTIONS.add_argument("--incognito")
 warnings.filterwarnings ('ignore')
 
 
-class CustomerObjection():
+class CustomerObjection:
+    GC_DRIVER = os.path.join(os.getcwd(), 'driver', 'chromedriver.exe')
+    CHROME_OPTIONS = Chrome_options()
+    CHROME_OPTIONS.add_argument("--start-maximized")
+    CHROME_OPTIONS.add_argument("--disable-extensions")
+    CHROME_OPTIONS.add_argument("--incognito")
+
     def __init__(self, stop=False):
-        """FOR IE, USE  webdriver.Ie(GI_DRIVER) """
-        super().__init__()
         self.tot_seq = len(list(Pipeline.objection_generator()))
         self.objset = Pipeline.objection_generator()
         self.customer = None
-        self.driver = webdriver.Chrome(GC_DRIVER, options=CHROME_OPTIONS)
+        self.driver = webdriver.Chrome(self.GC_DRIVER, options=self.CHROME_OPTIONS)
         self.driver.get(URL)
         self.sequence = 0
         self.stop = stop
@@ -308,10 +301,10 @@ class Pipeline:
         for i, item in enumerate (example):
             print ('Index {} : {}'.format (i, item))
 
-    @staticmethod
-    def objection_generator():
+    @classmethod
+    def objection_generator(cls):
         filename = path_find('objection.xls', os.getcwd())
-        obj = Pipeline(filename)
+        obj = cls(filename)
         data = obj.isolate ()
         obj.print_example ()
         for datum in data:
