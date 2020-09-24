@@ -1,6 +1,6 @@
 import os
 
-PYTHON = r"C:\Users\glovis-laptop\AppData\Local\Programs\Python\Python37"
+BASE_PYTHON = r"C:\Users\glovis-laptop\AppData\Local\Programs\Python\Python37"
 VENV_64_DIR = os.path.join(os.getcwd(), 'venv')
 SCRIPTS_DIR = os.path.join(VENV_64_DIR, 'Scripts')
 
