@@ -25,7 +25,7 @@ class CustomerObjection:
 
     def __init__(self, stop=False):
         objections = Pipeline()
-        self.idx = []
+        # self.idx = []
         self.log = None
         self.df = objections.df
         self.tot_seq = len(objections.df)
@@ -152,6 +152,7 @@ class CustomerObjection:
                 self.click_element_id('groupRejectBtn', 3)
                 continue
         self.logging(feed, 'Created')
+        self.update_hist(feed, 'Created')
 
     def register(self, feed):
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
@@ -188,7 +189,7 @@ class CustomerObjection:
             pyautogui.press('enter')
             time.sleep(0.5)
             self.logging (feed, 'Registered')
-            self.update_hist(feed)
+            self.update_hist(feed, 'Registered')
         else:
             self.driver.switch_to.window(self.driver.window_handles[1])
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
@@ -231,6 +232,8 @@ class CustomerObjection:
         pyautogui.alert(
             text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount}, \n소요시간 : {elapsed} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n의뢰 한 후 브라우저를 닫으세요.',
             title='프로세스종료알림', button='OK')
+        self.df.to_excel('Cookies_objection\objection.xls', index=False)
+        os.startfile('Cookies_objection\objection.xls')
         input ('Press <ENTER> to terminate...')
         self.close()
 
@@ -242,9 +245,10 @@ class CustomerObjection:
         with open('Cookies_objection/log.txt', 'a+') as txt:
             txt.write(self.log)
 
-    def update_hist(self, feed):
-        self.idx.append(feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4])
-        print(self.idx)
+    def update_hist(self, feed, stage):
+        # self.idx.append(feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4])
+        # print(self.idx)
+        self.df.at[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4], 'Customer Reivew_'] = stage
 
     @classmethod
     def run(cls):
@@ -252,8 +256,8 @@ class CustomerObjection:
         try :
             obj.mainloop()
         except :
-            if len(obj.idx) is not 0:
-                obj.df.at[obj.idx, 'Customer Reivew_'] = 'Registered'
+            # if len(obj.idx) is not 0:
+                # obj.df.at[obj.idx, 'Customer Reivew_'] = 'Registered'
             obj.df.to_excel('Cookies_objection\objection.xls', index=False)
             os.startfile('Cookies_objection\objection.xls')
             obj.close()
