@@ -121,9 +121,7 @@ class CustomerObjection:
     def creation_loop(self, feed):
         """Redesigned on 2020.03.25"""
         index = [feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +str(feed[3])+ ',,' +feed[4]]
-        print(self.df.loc[index]['Result'].tolist())
         if 'Created' in self.df.loc[index]['Result'].tolist() :
-            print(self.df.loc[index]['Result'].tolist())
             return
         noc = 1
         self.setting(feed)
