@@ -122,6 +122,8 @@ class CustomerObjection:
 
     def creation_loop(self, feed):
         """Redesigned on 2020.03.25"""
+        if self.df.loc[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4]].iloc[0]['Customer Reivew_']  == 'Created':
+            return
         noc = 1
         self.setting(feed)
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
@@ -246,8 +248,6 @@ class CustomerObjection:
             txt.write(self.log)
 
     def update_hist(self, feed, stage):
-        # self.idx.append(feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4])
-        # print(self.idx)
         self.df.at[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4], 'Customer Reivew_'] = stage
 
     @classmethod
@@ -255,9 +255,7 @@ class CustomerObjection:
         obj = cls(stop=False)
         try :
             obj.mainloop()
-        except :
-            # if len(obj.idx) is not 0:
-                # obj.df.at[obj.idx, 'Customer Reivew_'] = 'Registered'
+        except Exception as e :
             obj.df.to_excel('Cookies_objection\objection.xls', index=False)
             os.startfile('Cookies_objection\objection.xls')
             obj.close()
@@ -342,5 +340,5 @@ if __name__ == '__main__':
     # print(df)
     # keys = ['HAOS,,EXP,,2020081WW,,Test1,,A', 'HAOS,,EXP,,2020081WW,,Test3,,C']
     # df.at[keys, 'Customer Reivew_'] = 'Registered'
-    # print(df.loc[keys]['Customer Reivew_'])
+    # print(df.loc[keys].iloc[0]['Customer Reivew_'])
     # print(df.loc[keys]['VENDORCODE'])
