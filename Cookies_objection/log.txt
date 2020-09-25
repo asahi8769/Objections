@@ -1074,3 +1074,34 @@
 
 2020/09/25 Initiated
 2020/09/25 11:48:42 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Created
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+2020/09/25 12:35:42 HMMC 2020-08-2WA-D, 0.1357, (36), Created
+
+2020/09/25 Initiated
+2020/09/25 12:36:52 HMMC 2020-08-2WA-D, 0.1357, (36), Created
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+2020/09/25 12:43:02 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Created
+
+2020/09/25 Initiated
+2020/09/25 12:44:10 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Registered
+2020/09/25 12:44:14 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Created
+2020/09/25 12:44:25 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Registered
+2020/09/25 12:44:29 HAOS 2020-08-1WW-E, Test3, (9, 10), Created
+2020/09/25 12:44:40 HAOS 2020-08-1WW-E, Test3, (9, 10), Registered
+2020/09/25, Elapsed 00:53 Registration Finished

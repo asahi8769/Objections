@@ -68,7 +68,6 @@ class CustomerObjection:
         self.click_element_id ('mainframe_VFrameSet_TopFrame_gfn_alert_form_alert_bottom_bg_btn_confirm', 1)
 
     def export_page(self):
-
         self.log_in()
         self.inner_remove_noti()
         dropdown = self.click_element_id ('mainframe_VFrameSet_TopFrame_form_cbo_auth_sub_dropbutton', 5)
@@ -122,7 +121,8 @@ class CustomerObjection:
 
     def creation_loop(self, feed):
         """Redesigned on 2020.03.25"""
-        if self.df.loc[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4]].iloc[0]['Customer Reivew_'] == 'Created':
+        index = [feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +str(feed[3])+ ',,' +feed[4]]
+        if self.df.loc[index].iloc[0]['Customer Reivew_'] == 'Created':
             return
         noc = 1
         self.setting(feed)
@@ -248,7 +248,7 @@ class CustomerObjection:
             txt.write(self.log)
 
     def update_hist(self, feed, stage):
-        self.df.at[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4], 'Customer Reivew_'] = stage
+        self.df.at[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +str(feed[3])+ ',,' +feed[4], 'Customer Reivew_'] = stage
 
     @classmethod
     def run(cls):
@@ -256,6 +256,7 @@ class CustomerObjection:
         try :
             obj.mainloop()
         except Exception as e :
+            print(f'Error occurred! {e}')
             obj.df.to_excel('Cookies_objection\objection.xls', index=False)
             os.startfile('Cookies_objection\objection.xls')
             obj.close()
@@ -278,7 +279,7 @@ class CustomerObjection:
 
 class Pipeline:
     def __init__(self):
-        self.filename = path_find('objection.xls', os.getcwd())
+        self.filename = r'Cookies_objection\objection.xls'
         with open (self.filename, 'rb') as file:
             self.df = pd.read_excel (file)
             self.df.fillna('', inplace=True)
@@ -335,11 +336,4 @@ class Pipeline:
 
 if __name__ == '__main__':
     CustomerObjection.run()
-    # data = Pipeline()
-    # df = data.df
-    # print(df)
-    # keys = ['HAOS,,EXP,,2020081WW,,Test1,,A', 'HAOS,,EXP,,2020081WW,,Test3,,C']
-    # df.at[keys, 'Customer Reivew_'] = 'Registered'
-    # print(df.loc[keys].iloc[0]['Customer Reivew_'])
-    # print(df.loc[keys]['VENDORCODE'])
-    # print(os.path.abspath(os.pardir))
+
