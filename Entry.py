@@ -278,7 +278,7 @@ class CustomerObjection:
 
 class Pipeline:
     def __init__(self):
-        self.filename = path_find('objection.xls', os.path.abspath(os.pardir))
+        self.filename = path_find('objection.xls', os.getcwd())
         with open (self.filename, 'rb') as file:
             self.df = pd.read_excel (file)
             self.df.fillna('', inplace=True)
@@ -334,7 +334,7 @@ class Pipeline:
 
 
 if __name__ == '__main__':
-    # CustomerObjection.run()
+    CustomerObjection.run()
     # data = Pipeline()
     # df = data.df
     # print(df)
@@ -342,4 +342,4 @@ if __name__ == '__main__':
     # df.at[keys, 'Customer Reivew_'] = 'Registered'
     # print(df.loc[keys].iloc[0]['Customer Reivew_'])
     # print(df.loc[keys]['VENDORCODE'])
-    print(os.path.abspath(os.pardir))
+    # print(os.path.abspath(os.pardir))

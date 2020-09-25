@@ -1067,3 +1067,10 @@
 2020/09/25 11:17:38 HAOS 2020-08-1WW-E, Test3, (9, 10), Created
 2020/09/25 11:17:49 HAOS 2020-08-1WW-E, Test3, (9, 10), Registered
 2020/09/25, Elapsed 00:39 Registration Finished
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+2020/09/25 11:48:42 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Created
