@@ -122,7 +122,7 @@ class CustomerObjection:
 
     def creation_loop(self, feed):
         """Redesigned on 2020.03.25"""
-        if self.df.loc[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4]].iloc[0]['Customer Reivew_']  == 'Created':
+        if self.df.loc[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4]].iloc[0]['Customer Reivew_'] == 'Created':
             return
         noc = 1
         self.setting(feed)
@@ -277,8 +277,8 @@ class CustomerObjection:
 
 
 class Pipeline:
-    def __init__(self, filename='Cookies_objection\objection.xls'):
-        self.filename = filename
+    def __init__(self):
+        self.filename = path_find('objection.xls', os.getcwd())
         with open (self.filename, 'rb') as file:
             self.df = pd.read_excel (file)
             self.df.fillna('', inplace=True)

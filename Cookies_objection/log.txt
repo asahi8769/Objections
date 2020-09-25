@@ -1056,3 +1056,14 @@
 2020/09/25 Initiated
 
 2020/09/25 Initiated
+
+2020/09/25 Initiated
+2020/09/25 11:15:58 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Created
+2020/09/25 11:16:17 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Registered
+2020/09/25 11:16:21 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Created
+
+2020/09/25 Initiated
+2020/09/25 11:17:34 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Registered
+2020/09/25 11:17:38 HAOS 2020-08-1WW-E, Test3, (9, 10), Created
+2020/09/25 11:17:49 HAOS 2020-08-1WW-E, Test3, (9, 10), Registered
+2020/09/25, Elapsed 00:39 Registration Finished
