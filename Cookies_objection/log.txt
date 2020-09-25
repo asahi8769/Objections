@@ -1105,3 +1105,60 @@
 2020/09/25 12:44:29 HAOS 2020-08-1WW-E, Test3, (9, 10), Created
 2020/09/25 12:44:40 HAOS 2020-08-1WW-E, Test3, (9, 10), Registered
 2020/09/25, Elapsed 00:53 Registration Finished
+
+2020/09/25 Initiated
+2020/09/25 13:07:15 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+2020/09/25 13:07:30 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Registered
+2020/09/25 13:07:34 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Created
+2020/09/25 13:07:42 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Registered
+2020/09/25 13:07:45 HAOS 2020-08-1WW-E, Test3, (9, 10), Created
+2020/09/25 13:07:53 HAOS 2020-08-1WW-E, Test3, (9, 10), Registered
+2020/09/25, Elapsed 00:55 Registration Finished
+
+2020/09/25 Initiated
+2020/09/25 13:09:55 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+2020/09/25 13:10:04 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Registered
+2020/09/25 13:10:07 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Created
+2020/09/25 13:10:17 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Registered
+2020/09/25 13:10:20 HAOS 2020-08-1WW-E, Test3, (9, 10), Created
+2020/09/25 13:10:28 HAOS 2020-08-1WW-E, Test3, (9, 10), Registered
+2020/09/25, Elapsed 00:50 Registration Finished
+
+2020/09/25 Initiated
+2020/09/25 13:17:55 HAOS 2020-08-1WW-E, Test1, (1, 2), Created
+
+2020/09/25 Initiated
+2020/09/25 13:41:05 HAOS 2020-08-1WW-E, Test1, (1, 2), Created
+
+2020/09/25 Initiated
+2020/09/25 13:50:34 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+
+2020/09/25 Initiated
+2020/09/25 13:51:39 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+
+2020/09/25 Initiated
+2020/09/25 13:52:30 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+
+2020/09/25 Initiated
+2020/09/25 13:53:22 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+
+2020/09/25 Initiated
+2020/09/25 13:55:37 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+
+2020/09/25 Initiated
+2020/09/25 13:57:27 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+2020/09/25 14:03:52 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+
+2020/09/25 Initiated
+
+2020/09/25 Initiated
+2020/09/25 14:05:36 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Registered
+2020/09/25 14:05:40 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Created
+2020/09/25 14:05:48 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Registered
+2020/09/25 14:05:52 HAOS 2020-08-1WW-E, Test3, (9, 10), Created
+2020/09/25 14:06:05 HAOS 2020-08-1WW-E, Test3, (9, 10), Registered
+2020/09/25, Elapsed 00:52 Registration Finished

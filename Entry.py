@@ -1,5 +1,5 @@
 from utils.config import *
-from utils.functions import path_find
+import numpy as np
 from datetime import datetime
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
@@ -17,7 +17,7 @@ warnings.filterwarnings ('ignore')
 
 
 class CustomerObjection:
-    GC_DRIVER = os.path.join(os.getcwd(), 'driver', 'chromedriver.exe')
+    GC_DRIVER = 'driver/chromedriver.exe'
     CHROME_OPTIONS = Chrome_options()
     CHROME_OPTIONS.add_argument("--start-maximized")
     CHROME_OPTIONS.add_argument("--disable-extensions")
@@ -25,10 +25,9 @@ class CustomerObjection:
 
     def __init__(self, stop=False):
         objections = Pipeline()
-        # self.idx = []
         self.log = None
         self.df = objections.df
-        self.tot_seq = len(objections.df)
+        self.tot_seq = len(objections.storage)
         self.objset = objections.objection_generator()
         self.customer = None
         self.driver = webdriver.Chrome(self.GC_DRIVER, options=self.CHROME_OPTIONS)
@@ -122,7 +121,9 @@ class CustomerObjection:
     def creation_loop(self, feed):
         """Redesigned on 2020.03.25"""
         index = [feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +str(feed[3])+ ',,' +feed[4]]
-        if self.df.loc[index].iloc[0]['Customer Reivew_'] == 'Created':
+        print(self.df.loc[index]['Result'].tolist())
+        if 'Created' in self.df.loc[index]['Result'].tolist() :
+            print(self.df.loc[index]['Result'].tolist())
             return
         noc = 1
         self.setting(feed)
@@ -234,8 +235,7 @@ class CustomerObjection:
         pyautogui.alert(
             text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount}, \n소요시간 : {elapsed} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n의뢰 한 후 브라우저를 닫으세요.',
             title='프로세스종료알림', button='OK')
-        self.df.to_excel('Cookies_objection\objection.xls', index=False)
-        os.startfile('Cookies_objection\objection.xls')
+        self.save_df()
         input ('Press <ENTER> to terminate...')
         self.close()
 
@@ -248,7 +248,12 @@ class CustomerObjection:
             txt.write(self.log)
 
     def update_hist(self, feed, stage):
-        self.df.at[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +str(feed[3])+ ',,' +feed[4], 'Customer Reivew_'] = stage
+        self.df.at[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +str(feed[3])+ ',,' +feed[4], 'Result'] = stage
+
+    def save_df(self):
+        self.df['Result'] = np.where(self.df['Customer Reivew_'] != '', '', self.df['Result'])
+        self.df.to_excel(r'Cookies_objection\objection.xls', index=False)
+        os.startfile(r'Cookies_objection\objection.xls')
 
     @classmethod
     def run(cls):
@@ -257,8 +262,7 @@ class CustomerObjection:
             obj.mainloop()
         except Exception as e :
             print(f'Error occurred! {e}')
-            obj.df.to_excel('Cookies_objection\objection.xls', index=False)
-            os.startfile('Cookies_objection\objection.xls')
+            obj.save_df()
             obj.close()
 
     def close(self):
@@ -289,6 +293,8 @@ class Pipeline:
         self.df['KEY'] = self.df['고객사'] + delimiter + self.df['E/D'] + delimiter + self.df['ISSUE NO'] +\
                          delimiter + self.df['OBJECTION_'].apply(str) + delimiter + self.df['유형']
         self.df.set_index('KEY', inplace=True)
+        if 'Result' not in self.df.columns:
+            self.df['Result'] = ['' for _ in range(len(self.df))]
         self.df_ = self.df[~(self.df['Customer Reivew_'].str.contains('reject')) &
                           ~(self.df['Customer Reivew_'].str.contains('wait')) &
                           ~(self.df['Customer Reivew_'].str.contains('pending')) &
@@ -298,8 +304,9 @@ class Pipeline:
                           ~(self.df['Customer Reivew_'].str.contains('done')) &
                           ~(self.df['Customer Reivew_'].str.contains('cancel')) &
                           ~(self.df['Customer Reivew_'].str.contains('기각')) &
-                          ~(self.df['Customer Reivew_'].str.contains('Registered'))
+                          ~(self.df['Result'].str.contains('Registered'))
         ]
+
         self.keys = set (self.df_.index)
         self.storage = list()
         self.data = self.isolate()
