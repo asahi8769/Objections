@@ -1002,3 +1002,26 @@
 2020/09/24 Initiated
 
 2020/09/24 Initiated
+
+2020/09/24 Initiated
+
+2020/09/24 Initiated
+
+2020/09/25 Initiated
+2020/09/25 07:57:57 KMM 2019-06-1WW-E, att2. this problem is caused by ECU software update, which is not attributable to the sub vendor(Continental-Bitesco), (177), Created
+
+2020/09/25 Initiated
+2020/09/25 08:05:24 KMM 2019-06-1WW-E, att2. this problem is caused by ECU software update, which is not attributable to the sub vendor(Continental-Bitesco), (177), Created
+
+2020/09/25 Initiated
+2020/09/25 09:10:22 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Created
+2020/09/25 09:11:05 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Registered
+2020/09/25 09:11:08 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Created
+
+2020/09/25 Initiated
+2020/09/25 09:17:07 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Created
+2020/09/25 09:17:48 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Registered
+2020/09/25 09:17:52 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Created
+
+2020/09/25 Initiated
+2020/09/25 09:32:00 HAOS 2020-08-1WW-E, Test1, (1, 2, 3, 4, 5), Created

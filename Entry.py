@@ -244,6 +244,19 @@ class CustomerObjection:
 
     def update_hist(self, feed):
         self.idx.append(feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +feed[3]+ ',,' +feed[4])
+        print(self.idx)
+
+    @classmethod
+    def run(cls):
+        obj = cls(stop=False)
+        try :
+            obj.mainloop()
+        except :
+            if len(obj.idx) is not 0:
+                obj.df.at[obj.idx, 'Customer Reivew_'] = 'Registered'
+            obj.df.to_excel('Cookies_objection\objection.xls', index=False)
+            os.startfile('Cookies_objection\objection.xls')
+            obj.close()
 
     def close(self):
         try:
@@ -253,14 +266,10 @@ class CustomerObjection:
             pass
 
     def __del__(self):
-        # if len(self.idx) is not 0:
-        #     self.df.loc[self.idx]['Customer Reivew_'] = 'Registered'
-        # self.df.to_excel('Cookies_objection\objection.xls', index=False)
         try :
             self.driver.delete_all_cookies()
         except Exception as e:
             print('Screen terminated according to nominal procedure.')
-
         os.system("taskkill /f /im chromedriver.exe /T")
         gc.collect()
 
@@ -295,7 +304,7 @@ class Pipeline:
 
     def isolate(self):
         for key in self.keys:
-            print(key)
+            # print(key)
             val_list = key.split (',,')
             val_list.append ([val_list[2][0:4], val_list[2][4:6], val_list[2][6:],
                               val_list[2][0:4] + '-' + val_list[2][4:6] + '-' + val_list[2][6:]])
@@ -323,5 +332,11 @@ class Pipeline:
 
 
 if __name__ == '__main__':
-    obj = CustomerObjection(stop=False)
-    obj.mainloop()
+    CustomerObjection.run()
+    # data = Pipeline()
+    # df = data.df
+    # print(df)
+    # keys = ['HAOS,,EXP,,2020081WW,,Test1,,A', 'HAOS,,EXP,,2020081WW,,Test3,,C']
+    # df.at[keys, 'Customer Reivew_'] = 'Registered'
+    # print(df.loc[keys]['Customer Reivew_'])
+    # print(df.loc[keys]['VENDORCODE'])
