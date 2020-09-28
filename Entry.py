@@ -255,10 +255,26 @@ class CustomerObjection:
 
     @classmethod
     def run(cls):
+
+        """ This is the main execution method of this class
+        The while loop shall be implemented when rgt page's the beneficiary plant choosing logic is fixed"""
+
+        # while True:
+        #     obj = cls(stop=False)
+        #     try:
+        #         obj.mainloop()
+        #     except Exception as e:
+        #         print(f'Error occurred! {e}')
+        #         obj.save_df()
+        #         obj.close()
+        #         time.sleep(10)
+        #     else:
+        #         break
+
         obj = cls(stop=False)
-        try :
+        try:
             obj.mainloop()
-        except Exception as e :
+        except Exception as e:
             print(f'Error occurred! {e}')
             obj.save_df()
             obj.close()
