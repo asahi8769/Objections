@@ -256,7 +256,7 @@ class CustomerObjection:
     @classmethod
     def run(cls):
 
-        """ This is the main execution method of this class
+        """ 2020.9.28 This is the main execution method of this class
         The while loop shall be implemented when rgt page's the beneficiary plant choosing logic is fixed"""
 
         # while True:
