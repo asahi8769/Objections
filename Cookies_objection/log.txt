@@ -1162,3 +1162,32 @@
 2020/09/25 14:05:52 HAOS 2020-08-1WW-E, Test3, (9, 10), Created
 2020/09/25 14:06:05 HAOS 2020-08-1WW-E, Test3, (9, 10), Registered
 2020/09/25, Elapsed 00:52 Registration Finished
+
+2020/09/28 Initiated
+2020/09/28 11:30:40 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+2020/09/28 11:31:08 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Registered
+2020/09/28 11:31:11 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Created
+
+2020/09/28 Initiated
+
+2020/09/28 Initiated
+2020/09/28 11:35:30 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+2020/09/28 11:35:53 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Registered
+2020/09/28 11:35:57 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Created
+
+2020/09/28 Initiated
+2020/09/28 11:38:37 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Registered
+2020/09/28 11:38:41 HAOS 2020-08-1WW-E, Test3, (9, 10), Created
+2020/09/28 11:39:12 HAOS 2020-08-1WW-E, Test3, (9, 10), Registered
+2020/09/28, Elapsed 01:08 Registration Finished
+
+2020/09/28 Initiated
+
+2020/09/28 Initiated
+2020/09/28 11:51:15 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Created
+2020/09/28 11:51:32 HAOS 2020-08-1WW-E, Test1, (1, 2, 3), Registered
+2020/09/28 11:51:36 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Created
+2020/09/28 11:51:44 HAOS 2020-08-1WW-E, Test2, (6, 7, 8), Registered
+2020/09/28 11:51:48 HAOS 2020-08-1WW-E, Test3, (9, 10), Created
+2020/09/28 11:51:56 HAOS 2020-08-1WW-E, Test3, (9, 10), Registered
+2020/09/28, Elapsed 00:57 Registration Finished

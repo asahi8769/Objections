@@ -17,11 +17,23 @@ warnings.filterwarnings ('ignore')
 
 
 class CustomerObjection:
+
+    """Current chromedriver version is 83. In order to keep this driver compatible with running chromebrowser version,
+    you can download newer version of chromedriver or disable chromebrowser's auto update function.
+    If chromebrowser version is ahead of the installed chromedriver version, chromedriver cannot manipulate chromebrowser.
+
+    Chromedriver download : https://chromedriver.chromium.org/downloads
+    How to disable chromedriver auto update(KOR) : https://rgy0409.tistory.com/2301
+
+    Since admin blocked access to chromedriver download page, disabling chromedriver is the easy way to go.
+
+    """
+
     GC_DRIVER = 'driver/chromedriver.exe'
     CHROME_OPTIONS = Chrome_options()
     CHROME_OPTIONS.add_argument("--start-maximized")
-    CHROME_OPTIONS.add_argument("--disable-extensions")
-    CHROME_OPTIONS.add_argument("--incognito")
+    # CHROME_OPTIONS.add_argument("--disable-extensions")
+    # CHROME_OPTIONS.add_argument("--incognito")
 
     def __init__(self, stop=False):
         objections = Pipeline()
@@ -29,6 +41,7 @@ class CustomerObjection:
         self.df = objections.df
         self.tot_seq = len(objections.storage)
         self.objset = objections.objection_generator()
+        self.delimiter = objections.delimiter
         self.customer = None
         self.driver = webdriver.Chrome(self.GC_DRIVER, options=self.CHROME_OPTIONS)
         self.driver.get(URL)
@@ -120,7 +133,7 @@ class CustomerObjection:
 
     def creation_loop(self, feed):
         """Redesigned on 2020.03.25"""
-        index = [feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +str(feed[3])+ ',,' +feed[4]]
+        index = [feed[0] + self.delimiter +feed[1]+ self.delimiter+feed[2]+ self.delimiter +str(feed[3])+ self.delimiter +feed[4]]
         if 'Created' in self.df.loc[index]['Result'].tolist() :
             return
         noc = 1
@@ -168,8 +181,10 @@ class CustomerObjection:
             By.XPATH, '//*[@id="searchBtn"]'))).click()
         pyperclip.copy(feed[3])
         if self.sequence == 1:
-            pyautogui.hotkey('alt', 'tab', 'left')
-        ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. \n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {feed[3]}.', title='등록확인', buttons=['OK', 'NO'])
+            pyautogui.hotkey('alt', 'tab', 'left', interval=0.1)
+        ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. '
+                                     f'\n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {feed[3]}.',
+                                title='등록확인', buttons=['OK', 'NO'])
         if ans.upper() != 'NO':
             self.driver.switch_to.window(self.driver.window_handles[1])
             self.length += len(feed[6])
@@ -231,7 +246,8 @@ class CustomerObjection:
             txt.write(f'{dt_string}, {elapsed} Registration Finished\n')
         self.request(min_year)
         pyautogui.alert(
-            text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount}, \n소요시간 : {elapsed} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n의뢰 한 후 브라우저를 닫으세요.',
+            text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount}, '
+                 f'\n소요시간 : {elapsed} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n의뢰 한 후 브라우저를 닫으세요.',
             title='프로세스종료알림', button='OK')
         self.save_df()
         input ('Press <ENTER> to terminate...')
@@ -246,7 +262,7 @@ class CustomerObjection:
             txt.write(self.log)
 
     def update_hist(self, feed, stage):
-        self.df.at[feed[0] + ',,' +feed[1]+ ',,'+feed[2]+ ',,' +str(feed[3])+ ',,' +feed[4], 'Result'] = stage
+        self.df.at[feed[0] + self.delimiter +feed[1]+ self.delimiter+feed[2]+ self.delimiter +str(feed[3])+ self.delimiter +feed[4], 'Result'] = stage
 
     def save_df(self):
         self.df['Result'] = np.where(self.df['Customer Reivew_'] != '', '', self.df['Result'])
@@ -257,7 +273,7 @@ class CustomerObjection:
     def run(cls):
 
         """ 2020.9.28 This is the main execution method of this class
-        The while loop shall be implemented when rgt page's the beneficiary plant choosing logic is fixed"""
+        The while loop shall be implemented when rgt page's 'beneficiary plant choosing logic' is fixed"""
 
         # while True:
         #     obj = cls(stop=False)
@@ -303,9 +319,9 @@ class Pipeline:
             self.df.fillna('', inplace=True)
 
         self.customer = self.df.iloc[0]['고객사']
-        delimiter = ',,'
-        self.df['KEY'] = self.df['고객사'] + delimiter + self.df['E/D'] + delimiter + self.df['ISSUE NO'] +\
-                         delimiter + self.df['OBJECTION_'].apply(str) + delimiter + self.df['유형']
+        self.delimiter = ',,'
+        self.df['KEY'] = self.df['고객사'] + self.delimiter + self.df['E/D'] + self.delimiter + self.df['ISSUE NO'] +\
+                         self.delimiter + self.df['OBJECTION_'].apply(str) + self.delimiter + self.df['유형']
         self.df.set_index('KEY', inplace=True)
         if 'Result' not in self.df.columns:
             self.df['Result'] = ['' for _ in range(len(self.df))]
@@ -324,12 +340,16 @@ class Pipeline:
         self.keys = set (self.df_.index)
         self.storage = list()
         self.data = self.isolate()
-        self.print_example()
+        try :
+            self.print_example()
+        except IndexError as e:
+            print(f'No data is available. {e}')
+            sys.exit()
+            # os.close(1)
 
     def isolate(self):
         for key in self.keys:
-            # print(key)
-            val_list = key.split (',,')
+            val_list = key.split (self.delimiter)
             val_list.append ([val_list[2][0:4], val_list[2][4:6], val_list[2][6:],
                               val_list[2][0:4] + '-' + val_list[2][4:6] + '-' + val_list[2][6:]])
             partial_df = self.df_.loc[key]
