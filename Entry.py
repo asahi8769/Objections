@@ -266,7 +266,7 @@ class CustomerObjection:
             txt.write(self.log)
 
     def update_hist(self, feed, stage):
-        print('Updating ...')
+        # print('Updating ...')
         # print(len(self.df.at[feed[0] + self.delimiter + feed[1] + self.delimiter + feed[2] + self.delimiter + feed[3] +
         #            self.delimiter + feed[4], 'Result']))
         self.df.at[feed[0] + self.delimiter + feed[1] + self.delimiter + feed[2] + self.delimiter + feed[3] +
