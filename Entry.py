@@ -272,7 +272,6 @@ class CustomerObjection:
         self.df.at[feed[0] + self.delimiter + feed[1] + self.delimiter + feed[2] + self.delimiter + feed[3] +
                    self.delimiter + feed[4], 'Result'] = stage
 
-
     def save_df(self):
         self.df['Result'] = np.where(self.filters, self.df['Result'], '')
         self.df.to_excel(r'Cookies_objection\objection.xls', index=False)
@@ -334,17 +333,20 @@ class Pipeline:
         self.df.set_index('KEY', inplace=True)
         if 'Result' not in self.df.columns:
             self.df['Result'] = ['' for _ in range(len(self.df))]
-        self.filters = (~(self.df['Customer Reivew_'].str.contains('reject')) &
-                         ~(self.df['Customer Reivew_'].str.contains('wait')) &
-                         ~(self.df['Customer Reivew_'].str.contains('pending')) &
-                         ~(self.df['Customer Reivew_'].str.contains('denied')) &
-                         ~(self.df['Customer Reivew_'].str.contains('wrong')) &
-                         ~(self.df['Customer Reivew_'].str.contains('deny')) &
-                         ~(self.df['Customer Reivew_'].str.contains('done')) &
-                         ~(self.df['Customer Reivew_'].str.contains('cancel')) &
-                         ~(self.df['Customer Reivew_'].str.contains('기각')) &
-                         ~(self.df['Result'].str.contains('Registered')))
-        self.df_ = self.df[self.filters]
+
+        self.filters = (
+                ~(self.df['Customer Reivew_'].str.contains('reject')) &
+                ~(self.df['Customer Reivew_'].str.contains('wait')) &
+                ~(self.df['Customer Reivew_'].str.contains('pending')) &
+                ~(self.df['Customer Reivew_'].str.contains('denied')) &
+                ~(self.df['Customer Reivew_'].str.contains('wrong')) &
+                ~(self.df['Customer Reivew_'].str.contains('deny')) &
+                ~(self.df['Customer Reivew_'].str.contains('done')) &
+                ~(self.df['Customer Reivew_'].str.contains('cancel')) &
+                ~(self.df['Customer Reivew_'].str.contains('기각'))
+        )
+
+        self.df_ = self.df[self.filters & ~(self.df['Result'].str.contains('Registered'))]
         self.keys = set(self.df_.index)
         self.storage = list()
         self.data = self.isolate()
