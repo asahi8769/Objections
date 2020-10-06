@@ -123,8 +123,7 @@ class CustomerObjection:
         while True:
             try:
                 time.sleep(1)
-                WebDriverWait(self.driver, 5).until(
-                    EC.element_to_be_clickable((
+                WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
                         By.XPATH, "//select[@name='K_RPYM_WNTI_NO']/option[@value='{}']".format(
                             feed[5][0] + feed[5][1] + '-' + feed[5][2] + '-' + feed[1][0])))).click()
                 break
@@ -291,6 +290,7 @@ class CustomerObjection:
         #         print(f'Error occurred! {e}')
         #         obj.save_df()
         #         obj.close()
+        #         del obj
         #         time.sleep(10)
         #     else:
         #         break
