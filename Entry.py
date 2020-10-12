@@ -187,7 +187,7 @@ class CustomerObjection:
         ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. '
                                      f'\n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {feed[3]}.',
                                 title='등록확인', buttons=['OK', 'NO'])
-        if ans.upper() != 'NO':
+        if ans.upper() == 'OK':
             self.driver.switch_to.window(self.driver.window_handles[1])
             self.length += len(feed[6])
             self.amount += feed[-1]
