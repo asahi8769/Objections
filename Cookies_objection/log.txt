@@ -1282,3 +1282,17 @@
 2020/10/12 13:19:23 KMMG 2020-08-1WW-D, test2, (2, 3), Created
 2020/10/12 13:19:41 KMMG 2020-08-1WW-D, test2, (2, 3), Registered
 2020/10/12 13:19:41, Elapsed 01:10 Registration Finished
+
+2020/10/12 13:31:19 Initiated
+2020/10/12 13:31:38 KMMG 2020-08-1WW-D, test, (1, 4, 5), Created
+2020/10/12 13:31:46 KMMG 2020-08-1WW-D, test, (1, 4, 5), Registered
+2020/10/12 13:31:51 KMMG 2020-08-1WW-D, test2, (2, 3), Created
+
+2020/10/12 13:35:25 Initiated
+2020/10/12 13:35:43 KMMG 2020-08-1WW-D, test, (1, 4, 5), Created
+2020/10/12 13:35:52 KMMG 2020-08-1WW-D, test, (1, 4, 5), Registered
+2020/10/12 13:35:56 KMMG 2020-08-1WW-D, test2, (2, 3), Created
+
+2020/10/12 13:36:31 Initiated
+2020/10/12 13:36:54 KMMG 2020-08-1WW-D, test2, (2, 3), Registered
+2020/10/12 13:36:54, Elapsed 00:23 Registration Finished
