@@ -10,6 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import warnings, time, operator, gc, sys, os, pyautogui, pyperclip
+from selenium.webdriver.support.ui import Select
 import pandas as pd
 
 warnings.filterwarnings('ignore')
@@ -205,8 +206,12 @@ class CustomerObjection:
             time.sleep(0.7)
             pyautogui.press('enter')
             time.sleep(0.5)
+
+            objection_no = Select(WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
+                By.XPATH, '// *[ @ id = "K_MKOB_OFDC_NO"]')))).options[-1].get_attribute('innerText')
+
             self.logging(feed, 'Registered')
-            self.update_hist(feed, 'Registered')
+            self.update_hist(feed, 'Registered', objection_no)
         else:
             self.driver.switch_to.window(self.driver.window_handles[1])
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
@@ -224,10 +229,8 @@ class CustomerObjection:
         self.click_element_id('searchBtn', 3)
 
     def mainloop(self):
-        now = datetime.now()
-        dt_string = now.strftime("%Y/%m/%d")
         with open('Cookies_objection/log.txt', 'a+') as txt:
-            txt.write(f'\n{dt_string} Initiated\n')
+            txt.write(f'\n{datetime.now().strftime("%Y/%m/%d %H:%M:%S")} Initiated\n')
         start = time.time()
         self.get_workfloor()
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
@@ -239,13 +242,10 @@ class CustomerObjection:
             self.counter(3)
             self.creation_loop(feed)
             self.register(feed)
-        end = time.time()
-        elapsed = 'Elapsed {0:02d}:{1:02d}'.format(*divmod(int(end - start), 60))
-        print(elapsed)
-        now = datetime.now()
-        dt_string = now.strftime("%Y/%m/%d")
+        elapsed = 'Elapsed {0:02d}:{1:02d}'.format(*divmod(int(time.time() - start), 60))
+        print(f'Elapsed : {elapsed}')
         with open('Cookies_objection/log.txt', 'a+') as txt:
-            txt.write(f'{dt_string}, {elapsed} Registration Finished\n')
+            txt.write(f'{datetime.now().strftime("%Y/%m/%d %H:%M:%S")}, {elapsed} Registration Finished\n')
         self.request(min_year)
         pyautogui.alert(
             text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount}, '
@@ -256,20 +256,19 @@ class CustomerObjection:
         self.close()
 
     def logging(self, feed, stage):
-        now = datetime.now()
-        dt_string = now.strftime("%Y/%m/%d %H:%M:%S")
         list_no = ', '.join([str(i) for i in feed[6]])
-        self.log = dt_string + ' ' + feed[0] + ' ' + feed[5][3] + '-' + feed[1][0] + ', ' + feed[
-            3] + f', ({list_no})' + f', {stage}\n'
+        self.log = datetime.now().strftime("%Y/%m/%d %H:%M:%S") + ' ' + feed[0] + ' ' + feed[5][3] + '-' + feed[1][0] + ', ' + feed[
+            3] + f', ({list_no}), {stage}\n'
         with open('Cookies_objection/log.txt', 'a+') as txt:
             txt.write(self.log)
 
-    def update_hist(self, feed, stage):
-        # print('Updating ...')
-        # print(len(self.df.at[feed[0] + self.delimiter + feed[1] + self.delimiter + feed[2] + self.delimiter + feed[3] +
-        #            self.delimiter + feed[4], 'Result']))
-        self.df.at[feed[0] + self.delimiter + feed[1] + self.delimiter + feed[2] + self.delimiter + feed[3] +
-                   self.delimiter + feed[4], 'Result'] = stage
+    def update_hist(self, feed, stage, objection_no=None):
+        index = feed[0] + self.delimiter + feed[1] + self.delimiter + feed[2] + self.delimiter + feed[3] + \
+                self.delimiter + feed[4]
+        if objection_no:
+            self.df.at[index, 'Result'] = objection_no
+        else :
+            self.df.at[index, 'Result'] = stage
 
     def save_df(self):
         self.df['Result'] = np.where(self.filters, self.df['Result'], '')
@@ -346,7 +345,7 @@ class Pipeline:
                 ~(self.df['Customer Reivew_'].str.contains('기각'))
         )
 
-        self.df_ = self.df[self.filters & ~(self.df['Result'].str.contains('Registered'))]
+        self.df_ = self.df[self.filters & ~(self.df['Result'].str.contains('SEF9'))]
         self.keys = set(self.df_.index)
         self.storage = list()
         self.data = self.isolate()
