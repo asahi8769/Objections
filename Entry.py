@@ -182,11 +182,17 @@ class CustomerObjection:
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
             By.XPATH, '//*[@id="searchBtn"]'))).click()
         pyperclip.copy(feed[3])
-        if self.sequence == 1:
-            pyautogui.hotkey('alt', 'tab', 'left', interval=0.1)
-        ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. '
-                                     f'\n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {feed[3]}.',
-                                title='등록확인', buttons=['OK', 'NO'])
+
+        if str(feed[5][2]).startswith('2'):
+            if self.sequence == 1:
+                pyautogui.hotkey('alt', 'tab', 'left', interval=0.1)
+            ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. '
+                                         f'\n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {feed[3]}.',
+                                    title='등록확인', buttons=['OK', 'NO'])
+        else :
+            ans = 'OK'
+            time.sleep(1)
+
         if ans.upper() == 'OK':
             self.driver.switch_to.window(self.driver.window_handles[1])
             self.length += len(feed[6])
@@ -217,13 +223,14 @@ class CustomerObjection:
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="menu"]/div[3]/ul/li[3]/a'))).click()
 
-    def request(self, min_year):
+    def request(self):
         """Redesigned on 2020.03.30"""
+        min_year = sorted([date[0:6] for date in self.df['ISSUE NO'].tolist()])[0]
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="menu"]/div[3]/ul/li[5]/a'))).click()
         print('\nCustomer : {}, Starting month : {}, Length : {}, Amount : {}'.format(self.customer, min(min_year),
                                                                                       self.length, self.amount))
-        self.input_year_month(str(min(min_year)), 1)
+        self.input_year_month(str(min_year), 1)
         WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
             By.XPATH, "//select[@name='K_PRDN_CORP_CD']/option[text()='{}']".format(self.customer)))).click()
         self.click_element_id('searchBtn', 3)
@@ -235,22 +242,24 @@ class CustomerObjection:
         self.get_workfloor()
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="menu"]/div[3]/ul/li[3]/a'))).click()
-        min_year = list()
+
         for feed in self.objset:
             self.customer = feed[0].upper()
-            min_year.append(int(feed[5][0] + feed[5][1]))
             self.counter(3)
             self.creation_loop(feed)
             self.register(feed)
+
         elapsed = 'Elapsed {0:02d}:{1:02d}'.format(*divmod(int(time.time() - start), 60))
         print(f'Elapsed : {elapsed}')
         with open('Cookies_objection/log.txt', 'a+') as txt:
             txt.write(f'{datetime.now().strftime("%Y/%m/%d %H:%M:%S")}, {elapsed} Registration Finished\n')
-        self.request(min_year)
+
+        self.request()
         pyautogui.alert(
             text=f'Customer : {self.customer}, Length : {self.length}, Amount : {self.amount}, '
                  f'\n소요시간 : {elapsed} \n금액, 건수 검증하고 이의제기 의뢰하세요. \n의뢰 한 후 브라우저를 닫으세요.',
             title='프로세스종료알림', button='OK')
+
         self.save_df()
         input('Press <ENTER> to terminate...')
         self.close()
