@@ -35,7 +35,7 @@ class CustomerObjection:
     # CHROME_OPTIONS.add_argument("--disable-extensions")
     # CHROME_OPTIONS.add_argument("--incognito")
 
-    def __init__(self, stop=False):
+    def __init__(self):
         objections = Pipeline()
         self.log = None
         self.df = objections.df
@@ -47,7 +47,6 @@ class CustomerObjection:
         self.driver = webdriver.Chrome(self.GC_DRIVER, options=self.CHROME_OPTIONS)
         self.driver.get(URL)
         self.sequence = 0
-        self.stop = stop
         self.length = 0
         self.amount = 0
 
@@ -105,16 +104,6 @@ class CustomerObjection:
         seq_y.send_keys(issuemonth[0:4])
         seq_m.send_keys(issuemonth[4:6])
         time.sleep(wait)
-
-    def counter(self, num):
-        self.sequence += 1
-        if self.stop:
-            if self.sequence == num + 1:
-                self.close()
-                print('TERMINATED BY SCRIPT')
-                sys.exit()
-        else:
-            pass
 
     def setting(self, feed):
         issuemonth = ''.join(feed[5])[0:6]
@@ -245,7 +234,7 @@ class CustomerObjection:
 
         for feed in self.objset:
             self.customer = feed[0].upper()
-            self.counter(3)
+            self.sequence += 1
             self.creation_loop(feed)
             self.register(feed)
 
@@ -286,24 +275,9 @@ class CustomerObjection:
 
     @classmethod
     def run(cls):
+        """ 2020.9.28 This is the main execution method of this class """
 
-        """ 2020.9.28 This is the main execution method of this class
-        The while loop shall be implemented when rgt page's 'beneficiary plant choosing logic' is fixed"""
-
-        # while True:
-        #     obj = cls(stop=False)
-        #     try:
-        #         obj.mainloop()
-        #     except Exception as e:
-        #         print(f'Error occurred! {e}')
-        #         obj.save_df()
-        #         obj.close()
-        #         del obj
-        #         time.sleep(10)
-        #     else:
-        #         break
-
-        obj = cls(stop=False)
+        obj = cls()
         try:
             obj.mainloop()
         except Exception as e:
@@ -316,15 +290,8 @@ class CustomerObjection:
             self.driver.delete_all_cookies()
             self.driver.quit()
         except Exception as e:
-            pass
-
-    def __del__(self):
-        try:
-            self.driver.delete_all_cookies()
-        except Exception as e:
-            print('Screen terminated according to nominal procedure.')
-        os.system("taskkill /f /im chromedriver.exe /T")
-        gc.collect()
+            print(f'Closing error occurred! {e}')
+        sys.exit()
 
 
 class Pipeline:
@@ -363,7 +330,6 @@ class Pipeline:
         except IndexError as e:
             print(f'No data is available. {e}')
             sys.exit()
-            # os.close(1)
 
     def isolate(self):
         for key in self.keys:
