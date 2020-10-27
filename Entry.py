@@ -172,7 +172,6 @@ class CustomerObjection:
             By.XPATH, '//*[@id="searchBtn"]'))).click()
         pyperclip.copy(feed[3])
 
-        # // *[ @ id = "statusArea"]
         text = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((
             By.XPATH, "// *[ @ id = 'statusArea']"))).text
         try:
