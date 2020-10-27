@@ -1334,3 +1334,12 @@
 2020/10/21 15:05:36 HAOS 2020-09-1WW-E, Other Vendor(DDTZ), (1126), Created
 2020/10/21 15:05:44 HAOS 2020-09-1WW-E, Other Vendor(DDTZ), (1126), Registered
 2020/10/21 15:05:44, Elapsed 04:59 Registration Finished
+
+2020/10/28 08:21:22 Initiated
+2020/10/28 08:21:39 KMS 2020-09-2WW-D, Wrong BR(10%), (13), Created
+
+2020/10/28 08:24:11 Initiated
+2020/10/28 08:24:29 KMS 2020-09-2WW-D, Wrong BR(10%), (13), Created
+
+2020/10/28 08:28:09 Initiated
+2020/10/28 08:28:25 KMS 2020-09-2WW-D, Wrong BR(10%), (13), Created

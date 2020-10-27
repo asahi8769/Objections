@@ -172,10 +172,19 @@ class CustomerObjection:
             By.XPATH, '//*[@id="searchBtn"]'))).click()
         pyperclip.copy(feed[3])
 
-        if str(feed[5][2]).startswith('2'):
+        # // *[ @ id = "statusArea"]
+        text = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((
+            By.XPATH, "// *[ @ id = 'statusArea']"))).text
+        try:
+            text = text.split(' ')[2]
+        except Exception as e:
+            text = None
+
+        # if str(feed[5][2]).startswith('2'):
+        if text != str(len(feed[6])):
             if self.sequence == 1:
                 pyautogui.hotkey('alt', 'tab', 'left', interval=0.1)
-            ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 이의제기 등록합니다. 교류클레임 여부 확인하세요. '
+            ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 건수가 불일치합니다. 교류클레임 여부 확인하세요. '
                                          f'\n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {feed[3]}.',
                                     title='등록확인', buttons=['OK', 'NO'])
         else :
