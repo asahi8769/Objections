@@ -47,7 +47,7 @@ class CustomerObjection:
         self.driver = webdriver.Chrome(self.GC_DRIVER, options=self.CHROME_OPTIONS)
         self.driver.get(URL)
         self.sequence = 0
-        self.length = 0
+        self.length = len(self.df[self.filters])
         self.amount = 0
 
     def click_element_id(self, ID, sec):
@@ -203,7 +203,7 @@ class CustomerObjection:
 
         if ans.upper() == 'OK':
             self.driver.switch_to.window(self.driver.window_handles[1])
-            self.length += len(feed[6])
+            # self.length += len(feed[6])
             self.amount += feed[-1]
             WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
                 By.XPATH, "//*[@id='K_MKOB_TYPE_CD']/option[@value='{}']".format(feed[4])))).click()
