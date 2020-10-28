@@ -43,12 +43,12 @@ class CustomerObjection:
         self.objset = objections.objection_generator()
         self.delimiter = objections.delimiter
         self.filters = objections.filters
+        self.length = len(self.df[self.filters])
+        self.amount = round(sum(self.df[self.filters]['전체']), 2)
         self.customer = None
         self.driver = webdriver.Chrome(self.GC_DRIVER, options=self.CHROME_OPTIONS)
         self.driver.get(URL)
         self.sequence = 0
-        self.length = len(self.df[self.filters])
-        self.amount = 0
 
     def click_element_id(self, ID, sec):
         try:
@@ -159,7 +159,7 @@ class CustomerObjection:
                 continue
         self.logging(feed, 'Created')
 
-    def get_searched_data_information(self):
+    def get_objections_on_screen(self):
         while True:
             try: WebDriverWait(self.driver, 1).until(EC.text_to_be_present_in_element((
                         By.XPATH, "// *[ @ id = 'statusArea']"), "You"))
@@ -169,8 +169,7 @@ class CustomerObjection:
                 except:
                     pass
                 else:
-                    text = None
-                    return text
+                    return None
             else:
                 text = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((
                             By.XPATH, "// *[ @ id = 'statusArea']"))).text
@@ -189,9 +188,9 @@ class CustomerObjection:
             By.XPATH, '//*[@id="searchBtn"]'))).click()
         pyperclip.copy(feed[3])
 
-        text = self.get_searched_data_information()
+        objections_on_screen = self.get_objections_on_screen()
 
-        if text != str(len(feed[6])):
+        if objections_on_screen != str(len(feed[6])):
             if self.sequence == 1:
                 pyautogui.hotkey('alt', 'tab', 'left', interval=0.1)
             ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 건수가 불일치합니다. 교류클레임 여부 확인하세요. '
@@ -203,7 +202,6 @@ class CustomerObjection:
 
         if ans.upper() == 'OK':
             self.driver.switch_to.window(self.driver.window_handles[1])
-            # self.length += len(feed[6])
             self.amount += feed[-1]
             WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
                 By.XPATH, "//*[@id='K_MKOB_TYPE_CD']/option[@value='{}']".format(feed[4])))).click()
