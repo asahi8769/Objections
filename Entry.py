@@ -298,7 +298,6 @@ class CustomerObjection:
         try:
             obj.mainloop()
         except Exception as e:
-            # raise
             print(f'Error occurred! {e}')
             obj.save_df()
             obj.close()
