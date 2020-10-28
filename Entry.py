@@ -72,8 +72,8 @@ class CustomerObjection:
         login_button.click()
 
     def inner_remove_noti(self):
-        self.click_element_id('mainframe_VFrameSet_TopFrame_CommLgds010P_4_form_ImageViewer00',
-                              3)  # todo : consider commenting out
+        # self.click_element_id("mainframe_VFrameSet_TopFrame_CommLgds010P_4_form_ImageViewer00", 3)
+        self.click_element_id('mainframe_VFrameSet_TopFrame_CommLgds010P_4_form_ImageViewer00', 3)  # todo : consider commenting out
         self.click_element_id('mainframe_VFrameSet_TopFrame_CommLgds010P_3_form_ImageViewer00', 1)
         self.click_element_id('mainframe_VFrameSet_TopFrame_CommLgds010P_2_form_ImageViewer00', 1)
         self.click_element_id('mainframe_VFrameSet_TopFrame_CommLgds010P_1_form_ImageViewer00', 1)
@@ -159,6 +159,23 @@ class CustomerObjection:
                 continue
         self.logging(feed, 'Created')
 
+    def get_searched_data_information(self):
+        while True:
+            try: WebDriverWait(self.driver, 1).until(EC.text_to_be_present_in_element((
+                        By.XPATH, "// *[ @ id = 'statusArea']"), "You"))
+            except:
+                try: WebDriverWait(self.driver, 1).until(EC.text_to_be_present_in_element((
+                        By.XPATH, "// *[ @ id = 'statusArea']"), "Theres"))
+                except:
+                    pass
+                else:
+                    text = None
+                    return text
+            else:
+                text = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((
+                            By.XPATH, "// *[ @ id = 'statusArea']"))).text
+                return text.split(' ')[2]
+
     def register(self, feed):
         WebDriverWait(self.driver, 7).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="menu"]/div[3]/ul/li[4]/a'))).click()
@@ -172,20 +189,14 @@ class CustomerObjection:
             By.XPATH, '//*[@id="searchBtn"]'))).click()
         pyperclip.copy(feed[3])
 
-        text = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((
-            By.XPATH, "// *[ @ id = 'statusArea']"))).text
-        try:
-            text = text.split(' ')[2]
-        except Exception as e:
-            text = None
+        text = self.get_searched_data_information()
 
-        # if str(feed[5][2]).startswith('2'):
         if text != str(len(feed[6])):
             if self.sequence == 1:
                 pyautogui.hotkey('alt', 'tab', 'left', interval=0.1)
             ans = pyautogui.confirm(text=f'{self.sequence}/{self.tot_seq} 건수가 불일치합니다. 교류클레임 여부 확인하세요. '
-                                         f'\n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {feed[3]}.',
-                                    title='등록확인', buttons=['OK', 'NO'])
+                                         f'\n건수: {len(feed[6])}, 금액: {feed[-1]}. \n사유: {feed[3]}.', title='등록확인',
+                                    buttons=['OK', 'NO'])
         else :
             ans = 'OK'
             time.sleep(1)
@@ -289,6 +300,7 @@ class CustomerObjection:
         try:
             obj.mainloop()
         except Exception as e:
+            # raise
             print(f'Error occurred! {e}')
             obj.save_df()
             obj.close()
