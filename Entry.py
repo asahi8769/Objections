@@ -43,8 +43,8 @@ class CustomerObjection:
         self.objset = objections.objection_generator()
         self.delimiter = objections.delimiter
         self.filters = objections.filters
-        self.length = len(self.df[self.filters])
-        self.amount = round(sum(self.df[self.filters]['전체']), 2)
+        self.length = 0
+        self.amount = 0
         self.customer = None
         self.driver = webdriver.Chrome(self.GC_DRIVER, options=self.CHROME_OPTIONS)
         self.driver.get(URL)
@@ -203,6 +203,7 @@ class CustomerObjection:
         if ans.upper() == 'OK':
             self.driver.switch_to.window(self.driver.window_handles[1])
             self.amount += feed[-1]
+            self.length += len(feed[6])
             WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
                 By.XPATH, "//*[@id='K_MKOB_TYPE_CD']/option[@value='{}']".format(feed[4])))).click()
             WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((
